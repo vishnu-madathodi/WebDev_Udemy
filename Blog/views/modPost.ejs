@@ -1,0 +1,27 @@
+<%- include("partials/header.ejs") %>
+
+<!-- based on whether from edit or new -->
+<h1 class="heading" id="heading"><%= headingText %></h1>
+<% let type = methodType; %>
+
+<div class="main-container modPost-container" id="modPostContainer">
+  <form action='/<%= type %>/<% if(type === "edit"){ %><%= id %><%} %>' method="post">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="input" class="form-control" id="title" name="title" value="<% if(type === "edit"){ %><%= selectedHeading %><%} %>" required></input>
+      <div id="titleHelp" class="form-text">Add a brief title</div>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+        required
+      ><% if(type === "edit"){ %><%= selectedDesc %><%} %></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<%- include("partials/footer.ejs") %>
